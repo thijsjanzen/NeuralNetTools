@@ -14,17 +14,17 @@ plotnet(mod_in, ...)
 
 \method{plotnet}{default}(mod_in, x_names, y_names, struct = NULL,
   nid = TRUE, all_out = TRUE, all_in = TRUE, bias = TRUE,
-  rel_rsc = c(1, 7), circle_cex = 5, node_labs = TRUE, var_labs = TRUE,
-  line_stag = NULL, cex_val = 1, alpha_val = 1,
+  rel_rsc = c(1, 7), circle_cex = 5, node_labs = TRUE,
+  var_labs = TRUE, line_stag = NULL, cex_val = 1, alpha_val = 1,
   circle_col = "lightblue", pos_col = "black", neg_col = "grey",
-  bord_col = "lightblue", max_sp = FALSE, pad_x = 1, prune_col = NULL,
-  prune_lty = "dashed", skip = NULL, ...)
+  bord_col = "lightblue", max_sp = FALSE, pad_x = 1,
+  prune_col = NULL, prune_lty = "dashed", skip = NULL, ...)
 
 \method{plotnet}{nnet}(mod_in, x_names = NULL, y_names = NULL,
   skip = FALSE, ...)
 
-\method{plotnet}{numeric}(mod_in, struct, x_names = NULL, y_names = NULL,
-  ...)
+\method{plotnet}{numeric}(mod_in, struct, x_names = NULL,
+  y_names = NULL, ...)
 
 \method{plotnet}{mlp}(mod_in, x_names = NULL, y_names = NULL,
   prune_col = NULL, prune_lty = "dashed", ...)

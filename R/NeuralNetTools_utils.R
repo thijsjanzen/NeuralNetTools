@@ -550,16 +550,12 @@ layer_lines <- function(mod_in, h_layer, layer1 = 1, layer2 = 2, out_layer = FAL
     }
 
     cols <- rep(pos_col, struct[layer1])
-    cols[wts<0] <- neg_col
-    
-    # remove pruned connections or color of prune_col not null, linetype dashed
     ltype <- rep(par('lty'), length(wts))
-    if('pruneFunc' %in% names(mod_in)){
-      if(is.null(prune_col)) cols[wts == 0] <- NA
-      else cols[wts == 0] <- prune_col
-      ltype[wts == 0] <- prune_lty
-    }
     
+    cols[wts<0] <- neg_col
+    if(is.null(prune_col)) cols[wts == 0] <- NA
+    cols[wts == 0] <- prune_col
+    ltype[wts == 0] <- prune_lty
   }
   
   else{
