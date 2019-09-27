@@ -513,7 +513,7 @@ layer_lines <- function(mod_in, h_layer, layer1 = 1, layer2 = 2, out_layer = FAL
   # see if skip layer is presnet in nnet
   chk <- grepl('skip-layer', capture.output(mod_in))
   
-  if(out_layer == TRUE){
+  if(out_layer == TRUE) {
     
     y0 <- get_ys(struct[layer1], max_sp, struct, y_range)
     y1 <- rep(get_ys(struct[layer2], max_sp, struct, y_range)[h_layer], struct[layer1])
@@ -581,6 +581,7 @@ layer_lines <- function(mod_in, h_layer, layer1 = 1, layer2 = 2, out_layer = FAL
     
     cols <- rep(pos_col, struct[layer2])
     cols[wts<0] <- neg_col
+    cols[wts==0] <- prune_col
     
     # remove pruned connections or color of prune_col not null, linetype dashed
     ltype <- rep(par('lty'), length(wts))
@@ -647,6 +648,8 @@ bias_lines <- function(bias_x, bias_y, mod_in, nid, rel_rsc, all_out, pos_col, n
     cols <- rep(pos_col, length(wts))
     cols[unlist(lapply(wts, function(x) x[1]))<0] <- neg_col
     wts_rs <- unlist(lapply(wts_rs, function(x) x[1]))
+    cols[unlist(lapply(wts, function(x) x[1])) == 0] <- NA
+    
     
     if(nid == FALSE){
       wts_rs <- rep(1, struct[val + 1])
