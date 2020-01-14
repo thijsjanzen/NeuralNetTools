@@ -24,6 +24,7 @@
 #' @param prune_lty line type for pruned connections, passed to \code{\link[graphics]{segments}}
 #' @param max_sp logical value indicating if space between nodes in each layer is maximized, default \code{FALSE}
 #' @param pad_x numeric for increasing or decreasing padding on the x-axis, values less than one will increase padding and values greater than one will decrease padding
+#' @param add if TRUE, the plot will be added to an already existing plot.
 #' @param skip logical if skip layer connections are plotted instead of the primary network
 #' @param ...	additional arguments passed to or from other methods
 #' 
@@ -155,7 +156,7 @@ plotnet <- function(mod_in, ...) UseMethod('plotnet')
 #' @export
 #'
 #' @method plotnet default
-plotnet.default <- function(mod_in, x_names, y_names, struct = NULL, nid = TRUE, all_out = TRUE, all_in = TRUE, bias = TRUE, rel_rsc = c(1, 7), circle_cex = 5, node_labs = TRUE, var_labs = TRUE, line_stag = NULL, cex_val = 1, alpha_val = 1, circle_col = 'lightblue', pos_col = 'black', neg_col = 'grey', bord_col = 'lightblue', max_sp = FALSE, pad_x = 1, prune_col = NA, prune_lty = 'dashed', skip = NULL, ...){
+plotnet.default <- function(mod_in, x_names, y_names, struct = NULL, nid = TRUE, all_out = TRUE, all_in = TRUE, bias = TRUE, rel_rsc = c(1, 7), circle_cex = 5, node_labs = TRUE, var_labs = TRUE, line_stag = NULL, cex_val = 1, alpha_val = 1, circle_col = 'lightblue', pos_col = 'black', neg_col = 'grey', bord_col = 'lightblue', max_sp = FALSE, pad_x = 1, prune_col = NA, prune_lty = 'dashed', add = FALSE, skip = NULL, ...){
 
   wts <- neuralweights(mod_in, struct = struct)
   struct <- wts$struct
@@ -178,7 +179,7 @@ plotnet.default <- function(mod_in, x_names, y_names, struct = NULL, nid = TRUE,
   circle_cex <- circle_cex
   
   #initiate plot
-  plot(x_range, y_range, type = 'n', axes = FALSE, ylab = '', xlab = '')
+  if(!add) plot(x_range, y_range, type = 'n', axes = FALSE, ylab = '', xlab = '')
   
   # warning if nnet hidden is zero
   if(struct[2] == 0){
